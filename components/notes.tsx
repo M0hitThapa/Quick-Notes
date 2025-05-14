@@ -3,12 +3,18 @@
 import NotesSidebar from "@/components/notes-sidebar";
 import HeaderCard from "./header/cardHeader";
 import { useState } from "react";
+import {type Note } from "@/lib/types";
 
 
 export default function Note() {
   const [notes,setNotes] = useState<Note[]>([])
 
-  const createNewNote = () => {}
+  const createNewNote = () => {
+    const newNote: Note = {
+      id:Date.now().toString(),
+      title:"New Note",
+    }
+  }
   return (
    <div className="flex flex-col min-h-screen bg-rose-100">
 <HeaderCard onNewNote={createNewNote}/>

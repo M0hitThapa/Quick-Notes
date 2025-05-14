@@ -15,7 +15,7 @@ export default function EmptyState({message, buttonText, onButtonClick}: EmptySt
 <p className='text-muted-foreground mb-4'>
 {message}
 </p>
-<Button onClick={onButtonClick}>
+<Button size="sm" onClick={onButtonClick}>
     <Plus className='h-4 w-4'/>
     {buttonText}</Button>
 </div>

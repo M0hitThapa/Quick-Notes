@@ -5,19 +5,17 @@ import {
 
   IconChartBar,
   IconDashboard,
-  IconDatabase,
 
-  IconFileWord,
   IconFolder,
 
 
   IconListDetails,
-  IconReport,
+
 
 
 } from "@tabler/icons-react"
 
-import { NavDocuments } from "@/components/sidebar/nav-documents"
+
 import { NavMain } from "@/components/sidebar/nav-main"
 
 import { NavUser } from "@/components/sidebar/nav-user"
@@ -62,23 +60,7 @@ const data = {
   
   ],
 
-  documents: [
-    {
-      name: "Data Library",
-      url: "#",
-      icon: IconDatabase,
-    },
-    {
-      name: "Reports",
-      url: "#",
-      icon: IconReport,
-    },
-    {
-      name: "Word Assistant",
-      url: "#",
-      icon: IconFileWord,
-    },
-  ],
+
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -101,7 +83,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavDocuments items={data.documents} />
+
     
       </SidebarContent>
       <SidebarFooter>
