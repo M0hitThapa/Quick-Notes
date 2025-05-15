@@ -12,25 +12,29 @@ import { Note } from "@/lib/types";
 import { formatDate } from "@/lib/storage";
 import { Button } from "./ui/button";
 import { Trash2 } from "lucide-react";
+import { ScrollArea } from "./ui/scroll-area";
 
 interface NotesSidebarProps {
   notes:Note[];
   onSelectNote: (note:Note) => void;
+  createNewNote: () => void;
+  onDeleteNote:(id:string) => void
 }
 
-export default function NotesSidebar({notes, onSelectNote}: NotesSidebarProps) {
+export default function NotesSidebar({notes, onSelectNote, createNewNote,onDeleteNote}: NotesSidebarProps) {
 
   return (
-   <Card>
+   <Card className="h-full">
   <CardHeader>
     <CardTitle>My Notes</CardTitle>
     
   </CardHeader>
   <CardContent>
    {notes.length === 0 ? (
-    <EmptyState message="No Notes" buttonText="Create"/>
+    <EmptyState message="No Notes" buttonText="Create" onButtonClick={createNewNote}/>
    ): (
-   <div>
+    <ScrollArea className="h-[calc(100vh-150px)]">
+         <div>
     {notes.map(note => (
       <div key={note.id} onClick={() => onSelectNote(note)} className="p-3 rounded-md cursor-pointer hover:bg-accent transition-colors">
        <div className="flex justify-between items-center">
@@ -51,6 +55,10 @@ export default function NotesSidebar({notes, onSelectNote}: NotesSidebarProps) {
         variant="ghost"
         size="icon"
         className="h-8 w-8 text-muted-foreground hover:text-destructive cursor-pointer"
+       onClick={(e) => {
+        e.stopPropagation();
+        onDeleteNote(note.id);
+       }}
         >
           <Trash2 className="h-4 w-4" />
         </Button>
@@ -59,6 +67,8 @@ export default function NotesSidebar({notes, onSelectNote}: NotesSidebarProps) {
       </div>
     ))}
    </div>
+    </ScrollArea>
+
    )} 
   </CardContent>
 

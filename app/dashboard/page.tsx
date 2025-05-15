@@ -1,7 +1,7 @@
 import { AppSidebar } from "@/components/sidebar/app-sidebar"
 import Note from "@/components/notes"
 
-import { SiteHeader } from "@/components/sidebar/site-header"
+
 import {
   SidebarInset,
   SidebarProvider,
@@ -21,7 +21,7 @@ export default function Dashboard() {
     >
       <AppSidebar variant="inset" />
       <SidebarInset>
-        <SiteHeader />
+      
         <Note />
       </SidebarInset>
     </SidebarProvider>

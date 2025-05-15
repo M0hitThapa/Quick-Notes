@@ -2,17 +2,30 @@
 
 import { Note } from '@/lib/types';
 import React, { useState } from 'react'
-import { Card, CardContent, CardHeader } from './ui/card';
+import { Card, CardContent, CardFooter, CardHeader } from './ui/card';
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
+import { Button } from './ui/button';
+import { Save, X } from 'lucide-react';
 
 interface NoteEditorProps {
     note:Note;
+    onSave:(note:Note) => void;
+    onCancel:() => void;
 }
 
-export default function NoteEditor({note}: NoteEditorProps) {
+export default function NoteEditor({note, onCancel,onSave}: NoteEditorProps) {
     const [title, setTitle] = useState(note.title);
     const [content, setContent] = useState(note.content);
+
+    const handleSave = () => {
+        onSave({
+            ...note,
+            title: title.trim() || "Untitled Note",
+            content,
+
+        })
+    }
   return (
    <Card>
     <CardHeader>
@@ -27,8 +40,18 @@ export default function NoteEditor({note}: NoteEditorProps) {
         value={content}
         onChange={(e) => setContent(e.target.value)}
         placeholder='Write your note here'
-        className='min-h-[calc(100vh-350px)] resize-none border-none focus-visible:ring-0 p-0' />
+        className='h-[calc(100vh-350px)] resize-none border-none focus-visible:ring-0 p-0' />
     </CardContent>
+    <CardFooter className='flex justify-end space-x-2'>
+        <Button variant="outline" onClick={onCancel}>
+            <X className='h-4 w-4' />
+            Cancel
+        </Button>
+        <Button onClick={handleSave}>
+            <Save className='h-4 w-4' />
+            Save
+        </Button>
+    </CardFooter>
    </Card>
   )
 }
