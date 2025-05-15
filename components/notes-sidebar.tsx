@@ -9,12 +9,16 @@ import {
 } from "@/components/ui/card"
 import EmptyState from "./emptyState";
 import { Note } from "@/lib/types";
+import { formatDate } from "@/lib/storage";
+import { Button } from "./ui/button";
+import { Trash2 } from "lucide-react";
 
 interface NotesSidebarProps {
-  notes:Note[]
+  notes:Note[];
+  onSelectNote: (note:Note) => void;
 }
 
-export default function NotesSidebar({notes}: NotesSidebarProps) {
+export default function NotesSidebar({notes, onSelectNote}: NotesSidebarProps) {
 
   return (
    <Card>
@@ -28,7 +32,7 @@ export default function NotesSidebar({notes}: NotesSidebarProps) {
    ): (
    <div>
     {notes.map(note => (
-      <div key={note.id} className="p-3 rounded-md cursor-pointer hover:bg-accent transition-colors">
+      <div key={note.id} onClick={() => onSelectNote(note)} className="p-3 rounded-md cursor-pointer hover:bg-accent transition-colors">
        <div className="flex justify-between items-center">
         <div>
           <h3 className="font-medium">
@@ -39,10 +43,17 @@ export default function NotesSidebar({notes}: NotesSidebarProps) {
             {note.content.substring(0,40)}
             {note.content.length > 40 ? "...": ""}
           </p>
-          <p>
-            
+          <p className="text-sm text-muted-foreground">
+            {formatDate(note.createdAt)}
           </p>
         </div>
+        <Button
+        variant="ghost"
+        size="icon"
+        className="h-8 w-8 text-muted-foreground hover:text-destructive cursor-pointer"
+        >
+          <Trash2 className="h-4 w-4" />
+        </Button>
 
        </div>
       </div>
