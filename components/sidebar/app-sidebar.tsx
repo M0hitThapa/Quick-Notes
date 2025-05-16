@@ -18,7 +18,7 @@ import {
 
 import { NavMain } from "@/components/sidebar/nav-main"
 
-import { NavUser } from "@/components/sidebar/nav-user"
+
 import {
   Sidebar,
   SidebarContent,
@@ -87,7 +87,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+
       </SidebarFooter>
     </Sidebar>
   )

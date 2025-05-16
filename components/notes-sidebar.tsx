@@ -18,10 +18,11 @@ interface NotesSidebarProps {
   notes:Note[];
   onSelectNote: (note:Note) => void;
   createNewNote: () => void;
-  onDeleteNote:(id:string) => void
+  onDeleteNote:(id:string) => void;
+  activeNoteId?:string;
 }
 
-export default function NotesSidebar({notes, onSelectNote, createNewNote,onDeleteNote}: NotesSidebarProps) {
+export default function NotesSidebar({notes, onSelectNote, createNewNote,onDeleteNote,activeNoteId}: NotesSidebarProps) {
 
   return (
    <Card className="h-full">
@@ -34,12 +35,13 @@ export default function NotesSidebar({notes, onSelectNote, createNewNote,onDelet
     <EmptyState message="No Notes" buttonText="Create" onButtonClick={createNewNote}/>
    ): (
     <ScrollArea className="h-[calc(100vh-150px)]">
-         <div>
+         <div className="flex flex-col gap-4">
     {notes.map(note => (
-      <div key={note.id} onClick={() => onSelectNote(note)} className="p-3 rounded-md cursor-pointer hover:bg-accent transition-colors">
+      <div key={note.id} onClick={() => onSelectNote(note)} className={`p-3 rounded-md cursor-pointer hover:bg-accent transition-colors  ${
+      activeNoteId === note.id ? "bg-accent": ""}`}>
        <div className="flex justify-between items-center">
         <div>
-          <h3 className="font-medium">
+          <h3 className="font-semibold">
             {note.title.substring(0,30)}
             {note.title.length > 30 ? "...": ""}
           </h3>

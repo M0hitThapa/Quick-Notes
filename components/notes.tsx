@@ -2,19 +2,29 @@
 
 import NotesSidebar from "@/components/notes-sidebar";
 
-import {  useState } from "react";
+import {  useEffect, useState } from "react";
 import {Note } from "@/lib/types";
 import NoteView from "./noteView";
 import NoteEditor from "./noteEditor";
 import { SiteHeader } from "./sidebar/site-header";
 import EmptyState from "./emptyState";
+import { loadNotes, saveNotes } from "@/lib/storage";
 
 
 export default function NotePage() {
   const [notes,setNotes] = useState<Note[]>([])
   const [activeNote, setActiveNote] = useState<Note | null>(null);
   const [isEditing, setIsEditing] = useState(false);
-  console.log(notes)
+  
+
+    useEffect(() => {
+    setNotes(loadNotes())
+     }, []);
+
+  useEffect(() => {
+    saveNotes(notes)
+
+  }, [notes]);
 
 
 
@@ -71,11 +81,11 @@ if(activeNote && activeNote.id === id) {
     return null;
   }
   return (
-   <div className="flex flex-col min-h-screen bg-rose-100">
+   <div className="flex flex-col min-h-screen ">
 <SiteHeader onNewNote={createNewNote}/>
     <main className="container mx-auto p-4 grid grid-cols-1 md:grid-cols-3 gap-6 flex-1">
       <div className=" md:col-span-1">
-        <NotesSidebar createNewNote={createNewNote} notes={notes}  onSelectNote={selectNote} onDeleteNote={deleteNote}/>
+        <NotesSidebar createNewNote={createNewNote} notes={notes}  onSelectNote={selectNote} onDeleteNote={deleteNote} activeNoteId={activeNote?.id} />
         </div>
       <div className=" md:col-span-2">
         {renderNoteContent()}

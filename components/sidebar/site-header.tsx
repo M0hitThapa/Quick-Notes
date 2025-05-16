@@ -17,7 +17,7 @@ export  function SiteHeader({onNewNote}: HeaderProps) {
           orientation="vertical"
           className="mx-2 data-[orientation=vertical]:h-4"
         />
-        <h1 className="text-base font-medium">Documents</h1>
+        <h1 className="text-base font-medium">Notes</h1>
         <div className="ml-auto flex items-center gap-2">
           <Button onClick={onNewNote} size="sm" className='cursor-pointer'>
     <PlusIcon className='h-4 w-4' />
