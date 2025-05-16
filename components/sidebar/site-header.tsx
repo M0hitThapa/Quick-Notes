@@ -25,7 +25,7 @@ export  function SiteHeader({onNewNote}: HeaderProps) {
 </Button>
           <Button variant="secondary" asChild size="sm" className="hidden sm:flex">
             <a
-              href="https://github.com/shadcn-ui/ui/tree/main/apps/v4/app/(examples)/dashboard"
+              href="https://github.com/M0hitThapa/Quick-Notes"
               rel="noopener noreferrer"
               target="_blank"
               className="dark:text-foreground"

@@ -14,7 +14,7 @@ export default function NoteView({note,onEdit}: NoteViewProps) {
   return (
     <Card>
         <CardHeader>
-            <CardTitle>{note.title}</CardTitle>
+            <CardTitle className='text-2xl'>{note.title}</CardTitle>
             <p className='text-sm text-muted-foreground'>{formatDate(note.createdAt)}</p>
         </CardHeader>
         <CardContent>
